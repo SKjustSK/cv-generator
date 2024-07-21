@@ -1,11 +1,14 @@
 import { useState } from 'react'
+import UserInterface from './components/UserInterface'
+import CVholder from './components/CVholder'
 
 function App() {
   return (
-    <h1 className="text-3xl font-bold underline text-blue-600">
-      Hello world!
-    </h1>
+    <div className="font-roboto relative box-border flex h-screen bg-[#201f24]">
+      <UserInterface />
+      <CVholder />
+    </div>
   )
 }
 
-export default App;
+export default App
