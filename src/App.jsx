@@ -4,7 +4,7 @@ import CVholder from './components/CVholder'
 
 function App() {
   return (
-    <div className="font-roboto relative box-border flex h-screen bg-[#201f24]">
+    <div className="font-roboto relative box-border flex h-[100%] w-[100%] bg-[#131313]">
       <UserInterface />
       <CVholder />
     </div>

@@ -4,7 +4,7 @@ function CVPage() {
 
 function CVholder() {
   return (
-    <section className="align-center flex grow justify-center py-6">
+    <section className="align-center fixed bottom-0 right-0 top-0 flex w-[60%] grow justify-center py-6">
       <CVPage />
     </section>
   )
