@@ -9,6 +9,7 @@ export default {
     extend: {
       fontFamily: {
         roboto: ['Roboto', 'Arial', 'sans-serif'],
+        inter: ['Inter', 'Arial', 'sans-serif']
       },
       dropShadow: {
         '3xl': '0 35px 35px rgba(0, 0, 0, 0.25)',

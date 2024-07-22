@@ -1,10 +1,11 @@
 import InputBox from './InputBox'
+import PrimaryButton from './PrimaryButton'
 
 function CategorySection({ title, inputBoxes }) {
   return (
-    <section className="flex flex-col gap-4 rounded-lg bg-[#262626] p-4 text-zinc-50 drop-shadow-3xl">
-      <div className="py-2 text-3xl font-medium">{title}</div>
-      <div className="flex flex-col gap-4">
+    <section className="flex w-full flex-col items-start gap-8 rounded-lg text-neutral-100">
+      <h2 className="self-stretch text-3xl font-light">{title}</h2>
+      <div className="flex flex-col gap-8 self-stretch">
         {inputBoxes.map((inputBox) => {
           return (
             <InputBox
@@ -14,6 +15,14 @@ function CategorySection({ title, inputBoxes }) {
             />
           )
         })}
+      </div>
+      <div className="my-2 flex gap-4">
+        <PrimaryButton
+          text="Edit"
+          hoverBorderColor="hover:border-orange-400"
+          hoverTextColor="hover:text-orange-300"
+        />
+        <PrimaryButton text="Save" />
       </div>
     </section>
   )

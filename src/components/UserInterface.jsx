@@ -4,9 +4,9 @@ import CategorySection from './CategorySection'
 
 function UserInterface() {
   return (
-    <section className="flex w-[40%] flex-col px-12 py-6">
+    <section className="flex w-[40%] flex-col gap-8 p-24 py-8">
       <Logo />
-      <div className="flex flex-col gap-6">
+      <div className="flex flex-col gap-16">
         {categoryData.map((category) => {
           return (
             <CategorySection

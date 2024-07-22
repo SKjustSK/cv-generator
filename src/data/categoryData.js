@@ -4,7 +4,7 @@ const categoryData = [
     id: 0,
     inputBoxes: [
       {
-        title: 'Name',
+        title: 'Full Name',
         type: 'text',
       },
       {
@@ -12,47 +12,61 @@ const categoryData = [
         type: 'mail',
       },
       {
-        title: 'Phone Number',
-        type: 'phone',
+        title: 'Contact Number',
+        type: 'tel',
       },
     ],
   },
   {
-    title: 'Personal Details',
+    title: 'Educational Bacgkround',
     id: 1,
     inputBoxes: [
       {
-        title: 'Name',
+        title: 'College / University / Institution / Organization',
         type: 'text',
       },
       {
-        title: 'Email',
-        type: 'mail',
+        title: 'Degree / Course / Specialization',
+        type: 'text',
       },
       {
-        title: 'Phone Number',
-        type: 'phone',
+        title: 'Graduation Year',
+        type: 'number',
+      },
+      {
+        title: 'GPA',
+        type: 'number',
+      }
+    ],
+  },
+  {
+    title: 'Work Experience',
+    id: 2,
+    inputBoxes: [
+      {
+        title: 'Title / Position',
+        type: 'text',
+      },
+      {
+        title: 'Company / Workplace',
+        type: 'text',
+      },
+      {
+        title: 'Job Responsibilities',
+        type: 'text',
       },
     ],
   },
   {
-    title: 'Personal Details',
-    id: 2,
+    title: 'Technical Skills',
+    id: 3,
     inputBoxes: [
       {
-        title: 'Name',
+        title:'Tech Stack',
         type: 'text',
-      },
-      {
-        title: 'Email',
-        type: 'mail',
-      },
-      {
-        title: 'Phone Number',
-        type: 'phone',
-      },
-    ],
-  },
+      }
+    ]
+  }
 ]
 
 export default categoryData
