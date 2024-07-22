@@ -19,7 +19,7 @@ const categoryData = [
   },
   {
     title: 'Personal Details',
-    id: 0,
+    id: 1,
     inputBoxes: [
       {
         title: 'Name',
@@ -37,7 +37,7 @@ const categoryData = [
   },
   {
     title: 'Personal Details',
-    id: 0,
+    id: 2,
     inputBoxes: [
       {
         title: 'Name',
