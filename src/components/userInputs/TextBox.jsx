@@ -1,5 +1,3 @@
-import { useRef } from 'react'
-
 function TextBox({
   fieldId,
   title,
@@ -8,13 +6,8 @@ function TextBox({
   inputValue,
   hanldeInputValue,
   errorText,
+  handleInputValidity
 }) {
-  const isFirstRender = useRef(true)
-
-  if (isFirstRender.current) {
-    errorText = ''
-    isFirstRender.current = false
-  }
 
   let borderColor = ''
   if (inputValue === '' && errorText === '') {
@@ -22,12 +15,13 @@ function TextBox({
   } else if (errorText === '') {
     borderColor = 'border-teal-300'
   } else {
-    borderColor = 'border-pink-400'
+    borderColor = 'border-pink-500'
   }
 
   const handleChange = (e) => {
     const userInput = e.target.value
     hanldeInputValue(fieldId, userInput)
+    handleInputValidity(fieldId, userInput)
   }
 
   return (
