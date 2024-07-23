@@ -13,7 +13,7 @@ function TextBox({ title, type, required, validate }) {
     if (errorText === '') {
       setBorderColor('border-teal-300')
     } else {
-      setBorderColor('border-neutral-700')
+      setBorderColor('border-pink-500')
     }
   }
 

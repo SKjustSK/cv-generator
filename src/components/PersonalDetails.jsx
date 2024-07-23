@@ -1,5 +1,6 @@
 import TextBox from './userInputs/TextBox'
 import PrimaryButton from './PrimaryButton'
+import { useState } from 'react'
 
 const validations = (() => {
   function name(text) {
@@ -38,29 +39,54 @@ const validations = (() => {
   }
 })()
 
+const personalDetailsData = [
+  {
+    title: 'Full Name',
+    id: 'fullName',
+    type: 'text',
+    required: true,
+    validate: validations.name,
+  },
+  {
+    title: 'Email Address',
+    id: 'emailAddress',
+    type: 'mail',
+    required: true,
+    validate: validations.email,
+  },
+  {
+    title: 'Contact Number',
+    id: 'contactNumber',
+    type: 'tel',
+    required: true,
+    validate: validations.phone,
+  },
+]
+
 function PersonalDetails({ title }) {
+  const [inputValues, setInputValues] = useState()
+
   return (
-    <form className="flex w-full flex-col items-start gap-8 rounded-lg text-neutral-100" onSubmit={(e) => {e.preventDefault()}}>
+    <form
+      className="flex w-full flex-col items-start gap-8 rounded-lg text-neutral-100"
+      onSubmit={(e) => {
+        e.preventDefault()
+      }}
+    >
       <h2 className="self-stretch text-3xl font-light">{title}</h2>
       <div className="flex flex-col gap-6 self-stretch">
-        <TextBox
-          title="Full Name"
-          required={true}
-          type="text"
-          validate={validations.name}
-        />
-        <TextBox
-          title="Email Address"
-          required={true}
-          type="mail"
-          validate={validations.email}
-        />
-        <TextBox
-          title="Contact Number"
-          required={true}
-          type="tel"
-          validate={validations.phone}
-        />
+        {personalDetailsData.map((field) => {
+          return (
+            <TextBox
+              title={field.title}
+              key={field.id}
+              id={field.id}
+              type={field.type}
+              required={field.required}
+              validate={field.validate}
+            />
+          )
+        })}
       </div>
       <div className="my-2 flex gap-4">
         <PrimaryButton
