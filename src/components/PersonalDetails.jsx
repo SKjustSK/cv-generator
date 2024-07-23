@@ -69,6 +69,14 @@ function PersonalDetails({ title }) {
     initialInputValues[field.id] = ''
   })
   const [inputValues, setInputValues] = useState(initialInputValues)
+  const hanldeInputValue = (fieldId, newInputValue) => {
+    setInputValues({...inputValues, [fieldId]: newInputValue })
+  }
+
+  let errors = {}
+  personalDetailsData.forEach((field) => {
+    errors[field.id] = field.validate(inputValues[field.id])
+  })
 
   return (
     <form
@@ -89,7 +97,8 @@ function PersonalDetails({ title }) {
               required={field.required}
               validate={field.validate}
               inputValue={inputValues[field.id]}
-              setInputValues={setInputValues}
+              hanldeInputValue={hanldeInputValue}
+              errorText={errors[field.id]}
             />
           )
         })}
