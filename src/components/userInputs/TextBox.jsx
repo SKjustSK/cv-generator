@@ -1,14 +1,22 @@
 import { useState } from 'react'
 
-function TextBox({ title, type, required, validate }) {
-  const [inputValue, setInputValue] = useState('')
+function TextBox({
+  fieldId,
+  title,
+  type,
+  required,
+  validate = () => '',
+  inputValue,
+  setInputValues,
+}) {
   const [errorText, setErrorText] = useState('')
   const [borderColor, setBorderColor] = useState('border-neutral-700')
 
   const handleChange = (e) => {
     const userInput = e.target.value
+    setInputValues((prevValues) => ({ ...prevValues, [fieldId]: userInput }))
+
     const errorText = validate(userInput)
-    setInputValue(userInput)
     setErrorText(errorText)
     if (errorText === '') {
       setBorderColor('border-teal-300')

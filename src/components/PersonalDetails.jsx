@@ -64,7 +64,11 @@ const personalDetailsData = [
 ]
 
 function PersonalDetails({ title }) {
-  const [inputValues, setInputValues] = useState()
+  let initialInputValues = {}
+  personalDetailsData.forEach((field) => {
+    initialInputValues[field.id] = ''
+  })
+  const [inputValues, setInputValues] = useState(initialInputValues)
 
   return (
     <form
@@ -80,10 +84,12 @@ function PersonalDetails({ title }) {
             <TextBox
               title={field.title}
               key={field.id}
-              id={field.id}
+              fieldId={field.id}
               type={field.type}
               required={field.required}
               validate={field.validate}
+              inputValue={inputValues[field.id]}
+              setInputValues={setInputValues}
             />
           )
         })}
