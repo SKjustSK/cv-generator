@@ -40,7 +40,7 @@ const validations = (() => {
 
 function PersonalDetails({ title }) {
   return (
-    <form className="flex w-full flex-col items-start gap-8 rounded-lg text-neutral-100">
+    <form className="flex w-full flex-col items-start gap-8 rounded-lg text-neutral-100" onSubmit={(e) => {e.preventDefault()}}>
       <h2 className="self-stretch text-3xl font-light">{title}</h2>
       <div className="flex flex-col gap-6 self-stretch">
         <TextBox
