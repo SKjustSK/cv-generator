@@ -6,15 +6,15 @@ function TextBox({
   inputValue,
   hanldeInputValue,
   errorText,
-  handleInputValidity
+  handleInputValidity,
 }) {
 
   let borderColor = ''
-  if (inputValue === '' && errorText === '') {
+  if (errorText === 'initialLoad') {
     borderColor = 'border-neutral-700'
-  } else if (errorText === '') {
+  } else if (errorText === '' && inputValue !== '') {
     borderColor = 'border-teal-300'
-  } else {
+  } else if (errorText !== '') {
     borderColor = 'border-pink-500'
   }
 
@@ -34,7 +34,9 @@ function TextBox({
         onChange={(e) => handleChange(e)}
         className={`border-b-2 ${borderColor} bg-inherit py-2 font-[400] placeholder-neutral-400 outline-none hover:border-teal-100 focus:border-teal-300`}
       />
-      <div className="text-sm text-pink-500">{errorText}</div>
+      <div className="text-sm text-pink-500">
+        {errorText === 'initialLoad' ? '' : errorText}
+        </div>
     </div>
   )
 }

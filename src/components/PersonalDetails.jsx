@@ -64,6 +64,8 @@ const personalDetailsData = [
 ]
 
 function PersonalDetails({ title }) {
+
+  // Tracks user input in each TextBox 
   let initialInputValues = {}
   personalDetailsData.forEach((field) => {
     initialInputValues[field.id] = ''
@@ -73,9 +75,10 @@ function PersonalDetails({ title }) {
     setInputValues({ ...inputValues, [fieldId]: newInputValue })
   }
 
+  // Tracks errors for the inputs in each TextBox
   let initialErrors = {}
   personalDetailsData.forEach((field) => {
-    initialErrors[field.id] = ''
+    initialErrors[field.id] = 'initialLoad'
   })
   const [errors, setErrors] = useState(initialErrors)
 
