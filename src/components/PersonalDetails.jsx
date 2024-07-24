@@ -64,8 +64,7 @@ const personalDetailsData = [
 ]
 
 function PersonalDetails({ title }) {
-
-  // Tracks user input in each TextBox 
+  // Tracks user input in each TextBox
   let initialInputValues = {}
   personalDetailsData.forEach((field) => {
     initialInputValues[field.id] = ''
@@ -81,11 +80,39 @@ function PersonalDetails({ title }) {
     initialErrors[field.id] = 'initialLoad'
   })
   const [errors, setErrors] = useState(initialErrors)
-
   const handleInputValidity = (fieldId, inputValue) => {
     const field = personalDetailsData.find((field) => field.id === fieldId)
     const errorText = field.validate(inputValue)
     setErrors({ ...errors, [fieldId]: errorText })
+  }
+
+  const getErrors = () => {
+    let newErrors = {}
+    personalDetailsData.forEach((field) => {
+      newErrors[field.id] = field.validate(inputValues[field.id])
+    })
+    return newErrors
+  }
+
+  // Tracks state of save/edit button
+  const [isEditable, setIsEditable] = useState(true)
+  const handleSaveButton = () => {
+    // Update errors if there are any
+    const errors = getErrors()
+    setErrors(errors)
+
+    // Check if all inputs are valid
+    let newIsEditable = false
+    for (let error in errors) {
+      if (errors[error] !== '') {
+        newIsEditable = true
+        break
+      }
+    }
+    setIsEditable(newIsEditable)
+  }
+  const handleEditButton = () => {
+    setIsEditable(true)
   }
 
   return (
@@ -110,17 +137,22 @@ function PersonalDetails({ title }) {
               hanldeInputValue={hanldeInputValue}
               errorText={errors[field.id]}
               handleInputValidity={handleInputValidity}
+              disabled={!isEditable}
             />
           )
         })}
       </div>
       <div className="my-2 flex gap-4">
-        <PrimaryButton
-          text="Edit"
-          hoverBorderColor="hover:border-orange-400"
-          hoverTextColor="hover:text-orange-400"
-        />
-        <PrimaryButton text="Save" />
+        {isEditable ? (
+          <PrimaryButton text="Save" onClick={handleSaveButton} />
+        ) : (
+          <PrimaryButton
+            text="Edit"
+            hoverBorderColor="hover:border-orange-400"
+            hoverTextColor="hover:text-orange-400"
+            onClick={handleEditButton}
+          />
+        )}
       </div>
     </form>
   )
