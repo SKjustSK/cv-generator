@@ -1,4 +1,5 @@
 import { Fragment } from 'react'
+import { v4 as uuidv4 } from 'uuid'
 
 const sampleData = {
   personalDetails: {
@@ -17,6 +18,70 @@ const sampleData = {
     experience:
       'Any other fun respectable stuff like varsity sports, fraternity/sorority, study abroad, or other tidbits.',
   },
+  workExperience: [
+    {
+      companyName: 'Fruit Basket',
+      workedFrom: '01/01/2028',
+      workedTill: '05/08/2030',
+      jobTitle: 'Web Developer',
+      responsibilties: [
+        {
+          id: uuidv4(),
+          responsibility:
+            'Core responsibility #1 / key results / high level summary.',
+        },
+        {
+          id: uuidv4(),
+          responsibility:
+            'Core responsibility #2. As your most recent past experience, you can build out a few bullet points here.',
+        },
+        {
+          id: uuidv4(),
+          responsibility:
+            "Core responsibility #3. Don't feel the need to write too much about jobs from over 5 years in the past.",
+        },
+      ],
+    },
+    {
+      companyName: 'Google',
+      workedFrom: '01/01/2031',
+      workedTill: '05/08/2031',
+      jobTitle: 'Web Developer',
+      responsibilties: [
+        {
+          id: uuidv4(),
+          responsibility:
+            'Core responsibility #1 / key results / high level summary.',
+        },
+        {
+          id: uuidv4(),
+          responsibility:
+            'Core responsibility #2. As your most recent past experience, you can build out a few bullet points here.',
+        },
+        {
+          id: uuidv4(),
+          responsibility:
+            "Core responsibility #3. Don't feel the need to write too much about jobs from over 5 years in the past.",
+        },
+      ],
+    },
+  ],
+}
+
+function SectionHeader({ title }) {
+  return (
+    <h2 className="mb-2 mt-3 border-b-[1px] border-gray-400 text-base font-semibold">
+      {title}
+    </h2>
+  )
+}
+
+function SectionContainer({ children }) {
+  return (
+    <section className="flex flex-col text-sm leading-tight">
+      {children}
+    </section>
+  )
 }
 
 function CVPage() {
@@ -30,11 +95,12 @@ function CVPage() {
   }
 
   const educationBackground = sampleData.educationBackground
+  const workExperience = sampleData.workExperience
 
   return (
     <section className="flex aspect-[1/1.414] flex-col bg-white px-4 pt-4 font-serif text-black">
       {/* Personal Details  */}
-      <section className="flex flex-col border-b-2 border-black pb-1">
+      <section className="flex flex-col border-b-2 border-neutral-600 pb-1">
         <h1 className="text-4xl font-bold">{personalDetails.fullName}</h1>
         <div className="flex flex-wrap items-center gap-2 gap-y-0">
           {contactInfo.map((contact) => {
@@ -54,15 +120,13 @@ function CVPage() {
           </a>
         </div>
       </section>
+
       {/* Education Background  */}
-      <section className="flex flex-col pb-1 text-sm">
-        <h2 className="mb-2 mt-3 border-b-[1px] border-gray-400 text-base font-semibold">
-          Education Background
-        </h2>
-        <p className="font-semibold leading-tight">
-          {educationBackground.institution}
-          <br />
-          Graduated in {educationBackground.graduationYear}
+      <SectionContainer>
+        <SectionHeader title="Education Background" />
+        <p className="flex justify-between font-semibold">
+          <div>{educationBackground.institution}</div>
+          <div>{educationBackground.graduationYear}</div>
         </p>
         <p className="italic">
           {educationBackground.degree}, {educationBackground.specialization}
@@ -71,7 +135,32 @@ function CVPage() {
           <li>Passed out with {educationBackground.gpa} GPA</li>
           <li>{educationBackground.experience}</li>
         </ul>
-      </section>
+      </SectionContainer>
+
+      {/* Work Experience  */}
+      <SectionContainer>
+        <SectionHeader title="Work Experience" />
+        <ol className="ml-4 list-outside list-decimal">
+          {workExperience.map((job) => {
+            return (
+              <li key={job.companyName} className="mb-1">
+                <p className="flex items-end justify-between font-semibold">
+                  <div>{job.companyName}</div>
+                  <div className="text-xs">
+                    {job.workedFrom} - {job.workedTill}
+                  </div>
+                </p>
+                <p className="italic">{job.jobTitle}</p>
+                <ul className="list-inside list-disc text-xs leading-tight">
+                  {job.responsibilties.map((item) => {
+                    return <li key={item.id}>{item.responsibility}</li>
+                  })}
+                </ul>
+              </li>
+            )
+          })}
+        </ol>
+      </SectionContainer>
     </section>
   )
 }
