@@ -66,6 +66,15 @@ const sampleData = {
       ],
     },
   ],
+  technicalSkills: [
+    {
+      id: uuidv4(),
+      description: 'HTMl, CSS, Javascript, React, NodeJS, MongoDB, TailwindCSS',
+    },
+    { id: uuidv4(), description: 'C++, Python' },
+    { id: uuidv4(), description: 'Git, Github' },
+    { id: uuidv4(), description: 'OS and DBMS' },
+  ],
 }
 
 function SectionHeader({ title }) {
@@ -96,6 +105,7 @@ function CVPage() {
 
   const educationBackground = sampleData.educationBackground
   const workExperience = sampleData.workExperience
+  const technicalSkills = sampleData.technicalSkills
 
   return (
     <section className="flex aspect-[1/1.414] flex-col bg-white px-4 pt-4 font-serif text-black">
@@ -160,6 +170,16 @@ function CVPage() {
             )
           })}
         </ol>
+      </SectionContainer>
+
+      {/* Technical Skills  */}
+      <SectionContainer>
+        <SectionHeader title="Technical Skills" />
+        <ul className="list-inside list-disc text-xs leading-tight">
+          {technicalSkills.map((skill) => {
+            return <li key={skill.id}>{skill.description}</li>
+          })}
+        </ul>
       </SectionContainer>
     </section>
   )
