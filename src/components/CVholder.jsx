@@ -1,12 +1,13 @@
 import { Fragment } from 'react'
 import { v4 as uuidv4 } from 'uuid'
+import { SectionContainer, SectionHeader} from './CVComponents'
 
 const sampleData = {
   personalDetails: {
-    fullName: 'John Doe',
+    fullName: 'Sarthak Singh Tariyal',
     emailAddress: 'johndoe@gmail.com',
     contactNumber: '9876543210',
-    cityCountry: 'New York, USA',
+    cityCountry: 'XYZ, India',
     portfolioLink: 'https://github.com/SKjustSK/cv-generator',
   },
   educationBackground: {
@@ -75,22 +76,6 @@ const sampleData = {
     { id: uuidv4(), description: 'Git, Github' },
     { id: uuidv4(), description: 'OS and DBMS' },
   ],
-}
-
-function SectionHeader({ title }) {
-  return (
-    <h2 className="mb-2 mt-3 border-b-[1px] border-gray-400 text-base font-semibold">
-      {title}
-    </h2>
-  )
-}
-
-function SectionContainer({ children }) {
-  return (
-    <section className="flex flex-col text-sm leading-tight">
-      {children}
-    </section>
-  )
 }
 
 function CVPage() {
