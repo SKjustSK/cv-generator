@@ -150,14 +150,41 @@ function PersonalDetails({ title }) {
       <h2 className="self-stretch text-3xl font-light">{title}</h2>
       <div className="flex flex-col gap-5 self-stretch">
         {personalDetailsFormat.map((field) => {
-          // if (field.id === 'contactNumber') {
-          //   const cityCountry = personalDetailsFormat.find((field) => field.id === 'cityCountry');
-          //   return (
-          //     <div key={field.} className='flex gap-1'>
+          if (field.id === 'contactNumber') {
+            const contactNumber = field
+            const cityCountry = personalDetailsFormat.find(
+              (field) => field.id === 'cityCountry'
+            )
+            return (
+              <div
+                key={'contactNumber + cityCountry'}
+                className="flex flex-wrap gap-3"
+              >
+                <TextBox
+                  fieldConfig={contactNumber}
+                  key={contactNumber.id}
+                  inputValue={inputValues[contactNumber.id]}
+                  hanldeInputValue={hanldeInputValue}
+                  errorText={errors[contactNumber.id]}
+                  handleInputValidity={handleInputValidity}
+                  disabled={!isEditable}
+                />
+                <TextBox
+                  fieldConfig={cityCountry}
+                  key={cityCountry.id}
+                  inputValue={inputValues[cityCountry.id]}
+                  hanldeInputValue={hanldeInputValue}
+                  errorText={errors[cityCountry.id]}
+                  handleInputValidity={handleInputValidity}
+                  disabled={!isEditable}
+                />
+              </div>
+            )
+          }
 
-          //     </div>
-          //   )
-          // }
+          if (field.id === 'cityCountry') {
+            return
+          }
 
           return (
             <TextBox

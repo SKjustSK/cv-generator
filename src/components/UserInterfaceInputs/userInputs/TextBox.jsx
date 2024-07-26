@@ -28,7 +28,7 @@ function TextBox({
   }
 
   return (
-    <div className="flex flex-col gap-1 self-stretch">
+    <div className="flex grow flex-col gap-1 self-stretch">
       <input
         placeholder={fieldConfig.title}
         type={fieldConfig.type}
