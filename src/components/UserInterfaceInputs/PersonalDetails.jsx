@@ -2,6 +2,7 @@ import TextBox from './userInputs/TextBox'
 import PrimaryButton from './PrimaryButton'
 import { useState } from 'react'
 import personalDetailsFormat from '../../data/personDetailsFormat'
+import { Form, FormTitle, FormContent, FormButton } from './containers'
 
 function PersonalDetails({ title }) {
   // Tracks user input in each TextBox
@@ -56,14 +57,9 @@ function PersonalDetails({ title }) {
   }
 
   return (
-    <form
-      className="flex w-full flex-col items-start gap-8 rounded-lg text-neutral-100"
-      onSubmit={(e) => {
-        e.preventDefault()
-      }}
-    >
-      <h2 className="self-stretch text-3xl font-light">{title}</h2>
-      <div className="flex flex-col gap-5 self-stretch">
+    <Form>
+      <FormTitle>{title}</FormTitle>
+      <FormContent>
         {personalDetailsFormat.map((field) => {
           if (field.id === 'contactNumber') {
             const contactNumber = field
@@ -113,8 +109,8 @@ function PersonalDetails({ title }) {
             />
           )
         })}
-      </div>
-      <div className="my-2 flex gap-4">
+      </FormContent>
+      <FormButton>
         {isEditable ? (
           <PrimaryButton text="Save" onClick={handleSaveButton} />
         ) : (
@@ -125,8 +121,8 @@ function PersonalDetails({ title }) {
             onClick={handleEditButton}
           />
         )}
-      </div>
-    </form>
+      </FormButton>
+    </Form>
   )
 }
 

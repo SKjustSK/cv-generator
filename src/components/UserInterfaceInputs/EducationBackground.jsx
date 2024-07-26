@@ -2,6 +2,7 @@ import TextBox from './userInputs/TextBox'
 import PrimaryButton from './PrimaryButton'
 import { useState } from 'react'
 import educationBackgroundFormat from '../../data/educationBackgroundFormat'
+import { Form, FormTitle, FormContent, FormButton } from './containers'
 
 function EducationBackground({ title }) {
   // Tracks user input in each TextBox
@@ -58,14 +59,9 @@ function EducationBackground({ title }) {
   }
 
   return (
-    <form
-      className="flex w-full flex-col items-start gap-8 rounded-lg text-neutral-100"
-      onSubmit={(e) => {
-        e.preventDefault()
-      }}
-    >
-      <h2 className="self-stretch text-3xl font-light">{title}</h2>
-      <div className="flex flex-col gap-5 self-stretch">
+    <Form>
+      <FormTitle>{title}</FormTitle>
+      <FormContent>
         {educationBackgroundFormat.map((field) => {
           if (field.id === 'graduationYear') {
             const graduationYear = field
@@ -115,8 +111,8 @@ function EducationBackground({ title }) {
             />
           )
         })}
-      </div>
-      <div className="my-2 flex gap-4">
+      </FormContent>
+      <FormButton>
         {isEditable ? (
           <PrimaryButton text="Save" onClick={handleSaveButton} />
         ) : (
@@ -127,8 +123,8 @@ function EducationBackground({ title }) {
             onClick={handleEditButton}
           />
         )}
-      </div>
-    </form>
+      </FormButton>
+    </Form>
   )
 }
 
