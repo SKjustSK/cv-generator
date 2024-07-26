@@ -32,14 +32,25 @@ const validations = (() => {
     }
   }
 
+  function url(link) {
+    let givenURL
+    try {
+      givenURL = new URL(link)
+    } catch (error) {
+      return 'Invalid URL'
+    }
+    return ''
+  }
+
   return {
     name,
     email,
     phone,
+    url,
   }
 })()
 
-const personalDetailsData = [
+const personalDetailsFormat = [
   {
     title: 'Full Name',
     id: 'fullName',
@@ -61,12 +72,26 @@ const personalDetailsData = [
     required: true,
     validate: validations.phone,
   },
+  {
+    title: 'City, Country',
+    id: 'cityCountry',
+    type: 'text',
+    required: true,
+    validate: validations.name,
+  },
+  {
+    title: 'Portfolio / Github link',
+    id: 'url',
+    type: 'text',
+    required: true,
+    validate: validations.url,
+  },
 ]
 
 function PersonalDetails({ title }) {
   // Tracks user input in each TextBox
   let initialInputValues = {}
-  personalDetailsData.forEach((field) => {
+  personalDetailsFormat.forEach((field) => {
     initialInputValues[field.id] = ''
   })
   const [inputValues, setInputValues] = useState(initialInputValues)
@@ -76,19 +101,19 @@ function PersonalDetails({ title }) {
 
   // Tracks errors for the inputs in each TextBox
   let initialErrors = {}
-  personalDetailsData.forEach((field) => {
+  personalDetailsFormat.forEach((field) => {
     initialErrors[field.id] = 'initialLoad'
   })
   const [errors, setErrors] = useState(initialErrors)
   const handleInputValidity = (fieldId, inputValue) => {
-    const field = personalDetailsData.find((field) => field.id === fieldId)
+    const field = personalDetailsFormat.find((field) => field.id === fieldId)
     const errorText = field.validate(inputValue)
     setErrors({ ...errors, [fieldId]: errorText })
   }
 
   const getErrors = () => {
     let newErrors = {}
-    personalDetailsData.forEach((field) => {
+    personalDetailsFormat.forEach((field) => {
       newErrors[field.id] = field.validate(inputValues[field.id])
     })
     return newErrors
@@ -123,16 +148,21 @@ function PersonalDetails({ title }) {
       }}
     >
       <h2 className="self-stretch text-3xl font-light">{title}</h2>
-      <div className="flex flex-col gap-6 self-stretch">
-        {personalDetailsData.map((field) => {
+      <div className="flex flex-col gap-5 self-stretch">
+        {personalDetailsFormat.map((field) => {
+          // if (field.id === 'contactNumber') {
+          //   const cityCountry = personalDetailsFormat.find((field) => field.id === 'cityCountry');
+          //   return (
+          //     <div key={field.} className='flex gap-1'>
+
+          //     </div>
+          //   )
+          // }
+
           return (
             <TextBox
-              title={field.title}
+              fieldConfig={field}
               key={field.id}
-              fieldId={field.id}
-              type={field.type}
-              required={field.required}
-              validate={field.validate}
               inputValue={inputValues[field.id]}
               hanldeInputValue={hanldeInputValue}
               errorText={errors[field.id]}

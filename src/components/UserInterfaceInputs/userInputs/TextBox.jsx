@@ -1,8 +1,5 @@
 function TextBox({
-  fieldId,
-  title,
-  type,
-  required,
+  fieldConfig,
   inputValue,
   hanldeInputValue,
   errorText,
@@ -26,16 +23,16 @@ function TextBox({
 
   const handleChange = (e) => {
     const userInput = e.target.value
-    hanldeInputValue(fieldId, userInput)
-    handleInputValidity(fieldId, userInput)
+    hanldeInputValue(fieldConfig.id, userInput)
+    handleInputValidity(fieldConfig.id, userInput)
   }
 
   return (
     <div className="flex flex-col gap-1 self-stretch">
       <input
-        placeholder={title}
-        type={type}
-        required={required}
+        placeholder={fieldConfig.title}
+        type={fieldConfig.type}
+        required={fieldConfig.required}
         value={inputValue}
         onChange={(e) => handleChange(e)}
         className={`border-b-2 ${borderColor} bg-inherit py-2 ${textColor} font-[400] placeholder-neutral-400 outline-none hover:border-teal-100 focus:border-teal-300`}
