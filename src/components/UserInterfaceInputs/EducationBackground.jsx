@@ -1,5 +1,4 @@
-import TextBox from './userInputs/TextBox'
-import PrimaryButton from './PrimaryButton'
+import { TextBox, PrimaryButton } from './inputComponents'
 import { useState } from 'react'
 import educationBackgroundFormat from '../../data/educationBackgroundFormat'
 import { Form, FormTitle, FormContent, FormButton } from './containers'

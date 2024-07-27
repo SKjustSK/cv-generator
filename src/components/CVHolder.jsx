@@ -1,6 +1,6 @@
 import { Fragment } from 'react'
 import { v4 as uuidv4 } from 'uuid'
-import { SectionContainer, SectionHeader } from './CVComponents'
+import { SectionContainer, SectionHeader } from './CV/CVComponents'
 
 const sampleData = {
   personalDetails: {
