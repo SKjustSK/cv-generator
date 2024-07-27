@@ -3,15 +3,9 @@ import { useState } from 'react'
 import personalDetailsFormat from '../../data/personDetailsFormat'
 import { Form, FormTitle, FormContent, FormButton } from './containers'
 
-function PersonalDetails({ title }) {
-  // Tracks user input in each TextBox
-  let initialInputValues = {}
-  personalDetailsFormat.forEach((field) => {
-    initialInputValues[field.id] = ''
-  })
-  const [inputValues, setInputValues] = useState(initialInputValues)
-  const hanldeInputValue = (fieldId, newInputValue) => {
-    setInputValues({ ...inputValues, [fieldId]: newInputValue })
+function PersonalDetails({ title, sectionKey, inputValues, setInputValues }) {
+  const setInputValue = (fieldId, newInputValue) => {
+    setInputValues(sectionKey, { ...inputValues, [fieldId]: newInputValue })
   }
 
   // Tracks errors for the inputs in each TextBox
@@ -74,7 +68,7 @@ function PersonalDetails({ title }) {
                   fieldConfig={contactNumber}
                   key={contactNumber.id}
                   inputValue={inputValues[contactNumber.id]}
-                  hanldeInputValue={hanldeInputValue}
+                  setInputValue={setInputValue}
                   errorText={errors[contactNumber.id]}
                   handleInputValidity={handleInputValidity}
                   disabled={!isEditable}
@@ -83,7 +77,7 @@ function PersonalDetails({ title }) {
                   fieldConfig={cityCountry}
                   key={cityCountry.id}
                   inputValue={inputValues[cityCountry.id]}
-                  hanldeInputValue={hanldeInputValue}
+                  setInputValue={setInputValue}
                   errorText={errors[cityCountry.id]}
                   handleInputValidity={handleInputValidity}
                   disabled={!isEditable}
@@ -101,7 +95,7 @@ function PersonalDetails({ title }) {
               fieldConfig={field}
               key={field.id}
               inputValue={inputValues[field.id]}
-              hanldeInputValue={hanldeInputValue}
+              setInputValue={setInputValue}
               errorText={errors[field.id]}
               handleInputValidity={handleInputValidity}
               disabled={!isEditable}

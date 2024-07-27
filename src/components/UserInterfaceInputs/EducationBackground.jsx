@@ -3,15 +3,9 @@ import { useState } from 'react'
 import educationBackgroundFormat from '../../data/educationBackgroundFormat'
 import { Form, FormTitle, FormContent, FormButton } from './containers'
 
-function EducationBackground({ title }) {
-  // Tracks user input in each TextBox
-  let initialInputValues = {}
-  educationBackgroundFormat.forEach((field) => {
-    initialInputValues[field.id] = ''
-  })
-  const [inputValues, setInputValues] = useState(initialInputValues)
-  const hanldeInputValue = (fieldId, newInputValue) => {
-    setInputValues({ ...inputValues, [fieldId]: newInputValue })
+function EducationBackground({ title , sectionKey, inputValues, setInputValues}) {
+  const setInputValue = (fieldId, newInputValue) => {
+    setInputValues(sectionKey, { ...inputValues, [fieldId]: newInputValue })
   }
 
   // Tracks errors for the inputs in each TextBox
@@ -76,7 +70,7 @@ function EducationBackground({ title }) {
                   fieldConfig={graduationYear}
                   key={graduationYear.id}
                   inputValue={inputValues[graduationYear.id]}
-                  hanldeInputValue={hanldeInputValue}
+                  setInputValue={setInputValue}
                   errorText={errors[graduationYear.id]}
                   handleInputValidity={handleInputValidity}
                   disabled={!isEditable}
@@ -85,7 +79,7 @@ function EducationBackground({ title }) {
                   fieldConfig={gpa}
                   key={gpa.id}
                   inputValue={inputValues[gpa.id]}
-                  hanldeInputValue={hanldeInputValue}
+                  setInputValue={setInputValue}
                   errorText={errors[gpa.id]}
                   handleInputValidity={handleInputValidity}
                   disabled={!isEditable}
@@ -103,7 +97,7 @@ function EducationBackground({ title }) {
               fieldConfig={field}
               key={field.id}
               inputValue={inputValues[field.id]}
-              hanldeInputValue={hanldeInputValue}
+              setInputValue={setInputValue}
               errorText={errors[field.id]}
               handleInputValidity={handleInputValidity}
               disabled={!isEditable}

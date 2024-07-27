@@ -1,7 +1,7 @@
 function TextBox({
   fieldConfig,
   inputValue,
-  hanldeInputValue,
+  setInputValue,
   errorText,
   handleInputValidity,
   disabled,
@@ -23,7 +23,7 @@ function TextBox({
 
   const handleChange = (e) => {
     const userInput = e.target.value
-    hanldeInputValue(fieldConfig.id, userInput)
+    setInputValue(fieldConfig.id, userInput)
     handleInputValidity(fieldConfig.id, userInput)
   }
 
